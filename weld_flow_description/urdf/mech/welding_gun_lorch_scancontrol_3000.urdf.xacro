@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
   <xacro:macro name="end_effector" params="prefix">
+    
     <link name="welding_gun_link">
       <inertial>
         <origin xyz="-0.063966723890025 0.0507342971013102 -0.279018970359549" rpy="0 0 0" />
@@ -23,5 +24,25 @@
         </geometry>
       </collision>
     </link>
+
+    <link name="tcp_welding_gun_link"/>
+
+
+    <joint name="tcp_welding_gun_joint" type="fixed">
+      <origin xyz="0.00132 -0.00363 0.42954" rpy="3.1416 -2.3561 -1.571"/>
+      <parent link="wrist_3_link"/>
+      <child link="tcp_welding_gun_link"/>
+    </joint>
+
+    <joint name="welding_gun_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <parent link="tcp_welding_gun_link"/>
+      <child link="welding_gun_link"/>
+    </joint>
+      
+
+
+
+
   </xacro:macro>
 </robot>

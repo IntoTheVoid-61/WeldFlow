@@ -37,4 +37,7 @@
         <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
     </xacro:ur_robot>
 
+    <!--welding gun-->
+    <xacro:end_effector prefix="$(arg prefix)"/>
+
 </robot>
