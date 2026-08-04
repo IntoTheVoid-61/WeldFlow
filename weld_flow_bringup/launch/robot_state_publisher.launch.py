@@ -7,11 +7,6 @@ from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
 
 
-
-
-# Defining arguments from top level xacro file (dobot_e6.urdf.xacro). 
-
-
 def generate_launch_description():
     """ 
     Generates the launch description for robot visualization in RViz.

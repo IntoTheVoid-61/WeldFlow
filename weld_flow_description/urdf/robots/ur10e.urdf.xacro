@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur10e">
+<!--Perhaps make this a macro...-->
 
     <xacro:arg name='prefix' default=""/>
     <xacro:arg name="ur_type" default="ur10e"/>
     <xacro:arg name="name" default="ur"/>
-    <xacro:arg name="force_abs_paths" default="false" />
+    <xacro:arg name="force_abs_paths" default="true" /> <!--When using gazebo set to true-->
     <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml"/>
     <xacro:arg name="kinematics_params" default="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml"/>
     <xacro:arg name="physical_params" default="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml"/>

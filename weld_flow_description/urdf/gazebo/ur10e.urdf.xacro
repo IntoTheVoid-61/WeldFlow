@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+    <xacro:macro name="ur10_gazebo_utils">
+        <xacro:macro name="material_visual" params="ref_link ambient diffuse specular">
+            <gazebo reference="${ref_link}">
+            <visual>
+                <material>
+                <ambient>${ambient}</ambient>
+                <diffuse>${diffuse}</diffuse>
+                <specular>${specular}</specular>
+                </material>
+            </visual>
+            </gazebo>
+        </xacro:macro>
+
+
+        <xacro:material_visual ref_link="base_link_inertia" ambient="0.5 0.5 0.5 1" diffuse="0.5 0.5 0.5 1" specular="0.5 0.5 0.5 1"/>
+        <xacro:material_visual ref_link="forearm_link" ambient="0.5 0.5 0.5 1" diffuse="0.5 0.5 0.5 1" specular="0.5 0.5 0.5 1"/>
+        <xacro:material_visual ref_link="shoulder_link" ambient="0.5 0.5 0.5 1" diffuse="0.5 0.5 0.5 1" specular="0.5 0.5 0.5 1"/>
+        <xacro:material_visual ref_link="upper_arm_link" ambient="0.5 0.5 0.5 1" diffuse="0.5 0.5 0.5 1" specular="0.5 0.5 0.5 1"/>
+        <xacro:material_visual ref_link="wrist_1_link" ambient="0.5 0.5 0.5 1" diffuse="0.5 0.5 0.5 1" specular="0.5 0.5 0.5 1"/>
+        <xacro:material_visual ref_link="wrist_1_link" ambient="0.5 0.5 0.5 1" diffuse="0.5 0.5 0.5 1" specular="0.5 0.5 0.5 1"/>
+        <xacro:material_visual ref_link="wrist_2_link" ambient="0.5 0.5 0.5 1" diffuse="0.5 0.5 0.5 1" specular="0.5 0.5 0.5 1"/>
+        <xacro:material_visual ref_link="wrist_3_link" ambient="0.5 0.5 0.5 1" diffuse="0.5 0.5 0.5 1" specular="0.5 0.5 0.5 1"/>
+    </xacro:macro>
+</robot>
