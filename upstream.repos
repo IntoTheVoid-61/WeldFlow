@@ -1,0 +1,18 @@
+# Upstream dependencies
+repositories:
+  kuka_robot_descriptions:
+    type: git
+    url: https://github.com/kroshu/kuka_robot_descriptions.git
+    version: master
+  kuka-external-control-sdk:
+    type: git
+    url: https://github.com/kroshu/kuka-external-control-sdk.git
+    version: master
+  moveit2:
+    type: git
+    url: https://github.com/moveit/moveit2.git
+    version: main
+  Universal_Robots_ROS2_Description:
+    type: git
+    url: https://github.com/UniversalRobots/Universal_Robots_ROS2_Description
+    version: jazzy
