@@ -130,7 +130,7 @@ def generate_launch_description(robot_type="kuka"):
                     "pitch": LaunchConfiguration("pitch"),
                     "yaw": LaunchConfiguration("yaw"),
                     "prefix": LaunchConfiguration("namespace"),
-                    "mode": "gazebo" # mode gazebo
+                    "mode": "gazebo" # mode gazebo => initializes gazebo plugin
                 },
             )
             .robot_description_semantic(
