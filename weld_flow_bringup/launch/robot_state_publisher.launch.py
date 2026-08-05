@@ -5,9 +5,12 @@ from launch_ros.actions import Node
 from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
+from ament_index_python.packages import get_package_share_directory
+import yaml
+from pathlib import Path
 
 
-def generate_launch_description():
+def generate_launch_description(robot_type="kuka"):
     """ 
     Generates the launch description for robot visualization in RViz.
     This file launches:
@@ -37,33 +40,48 @@ def generate_launch_description():
     # Add them in command line launch arguments (DeclareLaunchArguments) .add_action() section
 
 
-    declare_robot_model_cmd = DeclareLaunchArgument(
-        name='robot_model',
-        default_value='ur10e',
-        choices=['ur10e','kuka_kr6_r1820_arc_hw'],
-        description='Name of robot model to load')
+    # load config params
+    bringup_config_path = (
+        Path(get_package_share_directory("weld_flow_bringup"))
+        / "config"
+        / "bringup_params.yaml"
+    )
+    with open(bringup_config_path, "r") as f:
+        config_params = yaml.load(f, Loader=yaml.SafeLoader)
 
-    declare_prefix_cmd = DeclareLaunchArgument(
-        name='prefix',
-        default_value="",
-        description='Robot prefix')
+    if (robot_type=="ur10e"):
 
     #--Defining top level urdf based on argument--#
+        urdf_model_path = PathJoinSubstitution(
+            [
+                pkg_share_description,
+                'urdf',
+                'robots',
+                ["ur10e", ".urdf.xacro"]
+            ])   
 
-    urdf_model_path = PathJoinSubstitution(
-        [
-            pkg_share_description,
-            'urdf',
-            'robots',
-            [LaunchConfiguration('robot_model'), ".urdf.xacro"]
-        ])   
-    
-    
-    # Generate the description parameter by processing xacro file
-    robot_description_content = ParameterValue(Command([
-        'xacro', ' ', urdf_model_path, ' ',
-        'prefix:=',LaunchConfiguration('prefix'),' ',
-    ]), value_type=str)
+        robot_description_content = ParameterValue(Command([
+            'xacro', ' ', urdf_model_path, ' ',
+        ]), value_type=str)
+
+    elif (robot_type=="kuka"):
+        robot_model=config_params['kuka']['robot_state_publisher']['robot_model']
+        robot_family=config_params['kuka']['robot_state_publisher']['robot_family']
+
+
+        urdf_model_path = PathJoinSubstitution([
+            FindPackageShare(f"kuka_{robot_family}_support"),
+            "urdf",
+            f"{robot_model}.urdf.xacro"
+        ])
+
+        # Generate the description parameter by processing xacro file
+        robot_description_content = ParameterValue(Command([
+            'xacro', ' ', urdf_model_path, ' ',
+            "mode:=mock", " ",
+            "use_gpio:=false", " "
+        ]), value_type=str)
+        
 
     #--Defining nodes--#
 
@@ -104,8 +122,8 @@ def generate_launch_description():
     ld = LaunchDescription()
 
     # Add command line launch arguments (DeclareLaunchArguments)
-    ld.add_action(declare_robot_model_cmd)
-    ld.add_action(declare_prefix_cmd)
+    #ld.add_action(declare_robot_model_cmd)
+    #ld.add_action(declare_prefix_cmd)
 
     # Add nodes to launch (Node)
     ld.add_action(start_robot_state_publisher)

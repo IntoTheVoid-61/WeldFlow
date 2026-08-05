@@ -26,4 +26,7 @@ kuka:
     roll: "0"
     pitch: "0"
     yaw: "0"
+  robot_state_publisher:
+    robot_model: "kr6_r1820_arc_hw"
+    robot_family: "cybertech"
 ur:
