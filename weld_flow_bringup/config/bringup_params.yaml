@@ -1,0 +1,29 @@
+kuka:
+  moveit_bringup_hardware:
+    robot_model: "kr6_r1820_arc_hw"
+    robot_family: "cybertech"
+    x: "0"
+    y: "0"
+    z: "0"
+    roll: "0"
+    pitch: "0"
+    yaw: "0"
+  moveit_bringup_mock:
+    robot_model: "kr6_r1820_arc_hw"
+    robot_family: "cybertech"
+    x: "0"
+    y: "0"
+    z: "0"
+    roll: "0"
+    pitch: "0"
+    yaw: "0"
+  moveit_bringup_gazebo:
+    robot_model: "kr6_r1820_arc_hw"
+    robot_family: "cybertech"
+    x: "0"
+    y: "0"
+    z: "0"
+    roll: "0"
+    pitch: "0"
+    yaw: "0"
+ur:
