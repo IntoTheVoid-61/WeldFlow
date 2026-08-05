@@ -8,6 +8,7 @@ kuka:
     roll: "0"
     pitch: "0"
     yaw: "0"
+    namespace: ""
   moveit_bringup_mock:
     robot_model: "kr6_r1820_arc_hw"
     robot_family: "cybertech"
@@ -17,6 +18,7 @@ kuka:
     roll: "0"
     pitch: "0"
     yaw: "0"
+    namespace: ""
   moveit_bringup_gazebo:
     robot_model: "kr6_r1820_arc_hw"
     robot_family: "cybertech"
@@ -26,6 +28,7 @@ kuka:
     roll: "0"
     pitch: "0"
     yaw: "0"
+    namespace: ""
   robot_state_publisher:
     robot_model: "kr6_r1820_arc_hw"
     robot_family: "cybertech"
