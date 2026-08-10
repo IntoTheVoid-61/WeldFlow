@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="weld_part_test">
+
+    <static>true</static>
+    <pose>1.1 0.5 0.774 0 0 0</pose>
+
+    <link name="weld_part_test_link">
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://weld_part_test/meshes/weld_part_test.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1.0</ambient>
+          <diffuse>0.1 0.1 0.1 1.0</diffuse>
+          <specular>1.0 1.0 1.0 1.0</specular>
+        </material>
+      </visual>
+
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://weld_part_test/meshes/weld_part_test.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+
+    </link>
+
+  </model>
+</sdf>

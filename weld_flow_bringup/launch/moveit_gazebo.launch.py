@@ -23,7 +23,7 @@ def generate_launch_description(robot_type="kuka"):
     declare_world_cmd = DeclareLaunchArgument(
         name="gz_world",
         default_value="empty",
-        choices=["empty"],
+        choices=["empty","lab"],
         description="Name of world to load"
     )
 

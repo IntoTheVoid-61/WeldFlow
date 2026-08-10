@@ -29,6 +29,7 @@ kuka:
     pitch: "0"
     yaw: "0"
     namespace: ""
+    gz_world: "lab"
   robot_state_publisher:
     robot_model: "kr6_r1820_arc_hw"
     robot_family: "cybertech"
