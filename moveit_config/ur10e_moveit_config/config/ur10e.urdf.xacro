@@ -2,11 +2,57 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur10e">
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
     <xacro:arg name="use_gazebo" default="false"/>
-    <xacro:arg name="use_mock_hardware" default="true"/>
 
+    <xacro:arg name="use_mock_hardware" default="true"/>
+    <xacro:arg name='prefix' default=""/>
+    <xacro:arg name="ur_type" default="ur10e"/>
+    <xacro:arg name="name" default="ur"/>
+    <xacro:arg name="force_abs_paths" default="false" /> <!--When using gazebo set to true-->
+    <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml"/>
+    <xacro:arg name="kinematics_params" default="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml"/>
+    <xacro:arg name="physical_params" default="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml"/>
+    <xacro:arg name="visual_params" default="$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml"/>
+    <xacro:arg name="transmission_hw_interface" default=""/>
+    <xacro:arg name="safety_limits" default="false"/>
+    <xacro:arg name="safety_pos_margin" default="0.15"/>
+    <xacro:arg name="safety_k_position" default="20"/>
+
+    <xacro:arg name="x" default="0"/>
+    <xacro:arg name="y" default="0"/>
+    <xacro:arg name="z" default="0"/>
+    <xacro:arg name="roll" default="0"/>
+    <xacro:arg name="pitch" default="0"/>
+    <xacro:arg name="yaw" default="0"/>
+
+
+    <xacro:include filename="$(find weld_flow_description)/urdf/mech/welding_gun_lorch_scancontrol_3000.urdf.xacro"/>
+    <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+
+    <!-- create link fixed to the "world" -->
+    <link name="world" />
+
+    <!-- arm -->
+    <xacro:ur_robot
+        name="$(arg name)"
+        tf_prefix="$(arg prefix)"
+        parent="world"
+        joint_limits_parameters_file="$(arg joint_limit_params)"
+        kinematics_parameters_file="$(arg kinematics_params)"
+        physical_parameters_file="$(arg physical_params)"
+        visual_parameters_file="$(arg visual_params)"
+        safety_limits="$(arg safety_limits)"
+        safety_pos_margin="$(arg safety_pos_margin)"
+        safety_k_position="$(arg safety_k_position)"
+        force_abs_paths="$(arg force_abs_paths)"
+        >
+        <origin xyz="$(arg x) $(arg y) $(arg z)" rpy="$(arg roll) $(arg pitch) $(arg yaw)" />          <!-- position robot in the world -->
+    </xacro:ur_robot>
+
+    <!--welding gun-->
+    <xacro:end_effector prefix="$(arg prefix)"/>
 
     <!-- Import ur10e urdf file -->
-    <xacro:include filename="$(find weld_flow_description)/urdf/robots/ur10e.urdf.xacro" />
+    <!--xacro:include filename="$(find weld_flow_description)/urdf/robots/ur10e.urdf.xacro" /-->
 
     <!-- Import generated control_xacro -->
     <!--xacro:include filename="ur10e.ros2_control.xacro" /-->
