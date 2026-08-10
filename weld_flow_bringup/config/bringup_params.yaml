@@ -34,3 +34,14 @@ kuka:
     robot_model: "kr6_r1820_arc_hw"
     robot_family: "cybertech"
 ur:
+  moveit_bringup_gazebo:
+    robot_model: "ur10e"
+    robot_family: "ur"
+    x: "0"
+    y: "0"
+    z: "0"
+    roll: "0"
+    pitch: "0"
+    yaw: "0"
+    namespace: ""
+    gz_world: "lab"

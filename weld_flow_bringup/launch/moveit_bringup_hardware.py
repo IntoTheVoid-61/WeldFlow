@@ -71,8 +71,8 @@ def generate_launch_description(robot_model="kuka"):
 
 
 
-    robot_model=config_params['kuka']['moveit_bringup_gazebo']['robot_model']
-    robot_family=config_params['kuka']['moveit_bringup_gazebo']['robot_family'] 
+    robot_model=config_params['kuka']['moveit_bringup_hardware']['robot_model']
+    robot_family=config_params['kuka']['moveit_bringup_hardware']['robot_family'] 
 
     if(robot_family == "cybertech"): # quick fix, for preliminary dev, generalize later
         moveit_config_pkg="kuka_kr"

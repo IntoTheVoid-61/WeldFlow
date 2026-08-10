@@ -13,11 +13,13 @@ import yaml
 from pathlib import Path
 
 
-def generate_launch_description(robot_type="kuka"):
+def generate_launch_description():
     """
     Generates launch description for MoveIt-Gazebo pipeline
     Controller manager is already started in gazebo_sim.urdf.xacro
     """
+
+    robot_type=os.environ.get("ROBOT_TYPE")
 
     # Add launch configurations
     declare_world_cmd = DeclareLaunchArgument(
@@ -94,16 +96,27 @@ def generate_launch_description(robot_type="kuka"):
         [LaunchConfiguration("gz_world"), ".world"]
     ])
 
-    if (robot_type=="ur10e"):
+    if (robot_type=="ur"):
         #pkg_share_description = FindPackageShare(f"{robot_type}_moveit_config")
 
+        robot_model=config_params['ur']['moveit_bringup_gazebo']['robot_model']
+
         moveit_config = (
-            MoveItConfigsBuilder(f"{robot_type}", package_name=f"{robot_type}_moveit_config")
+            MoveItConfigsBuilder(f"{robot_model}", package_name=f"{robot_model}_moveit_config")
             .robot_description(
-                file_path=f"config/{robot_type}.urdf.xacro",
+                file_path=f"config/{robot_model}.urdf.xacro",
                 mappings={
                     "use_gazebo": "true",
-                    "use_mock_hardware": "false"
+                    "use_mock_hardware": "false",
+                    "prefix": LaunchConfiguration("namespace"),
+                    "ur_type": robot_model,
+                    "force_abs_paths": "true",
+                    "x": LaunchConfiguration("x"),
+                    "y": LaunchConfiguration("y"),
+                    "z": LaunchConfiguration("z"),
+                    "roll": LaunchConfiguration("roll"),
+                    "pitch": LaunchConfiguration("pitch"),
+                    "yaw": LaunchConfiguration("yaw")
                 },
             )
             .to_moveit_configs()
@@ -239,9 +252,9 @@ def generate_launch_description(robot_type="kuka"):
             '-allow_renaming', 'true',
         ])
 
-    # Load controllers, different names for ur10e and kuka
+    # Load controllers, different names for ur and kuka
     load_controllers = []
-    if (robot_type == "ur10e"):
+    if (robot_type == "ur"):
         controllers=["arm_controller","joint_state_broadcaster"]
     elif (robot_type == "kuka"):
         controllers=["joint_trajectory_controller","joint_state_broadcaster"]
