@@ -3,8 +3,8 @@
 # set the PATH_TO_DESC_PKG variable to absolute path of folder containing the kuka_robot_descriptions repository.
 set -e
 
-#PATH_TO_DESC_PKG='/home/ziga/ros2_ws/src/kuka_robot_descriptions'
-PATH_TO_DESC_PKG='/home/ziga/Downloads'
+PATH_TO_DESC_PKG='/home/ziga/ros2_ws/src/kuka_robot_descriptions'
+#PATH_TO_DESC_PKG='/home/ziga/Downloads'
 
 # copy config
 cp ../files/config/kr6_r1820_arc_hw_joint_limits.yaml $PATH_TO_DESC_PKG/kuka_cybertech_support/config

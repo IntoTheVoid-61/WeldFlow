@@ -10,8 +10,8 @@ ROBOT_TYPE="kuka" # Use env var to switch between robot types, currently only ku
 
 export ROBOT_TYPE
 
-ROBOT_MODEL=$(yq eval ".${ROBOT_TYPE}.moveit_bringup_hardware.robot_model" ../config/bringup_params.yaml)
-ROBOT_FAMILY=$(yq eval ".${ROBOT_TYPE}.moveit_bringup_hardware.robot_family" ../config/bringup_params.yaml)
+ROBOT_MODEL=$(yq eval ".${ROBOT_TYPE}.moveit_bringup_hardware.robot_model" ../config/bringup_params.yaml) # kr6_r1820_arc_hw
+ROBOT_FAMILY=$(yq eval ".${ROBOT_TYPE}.moveit_bringup_hardware.robot_family" ../config/bringup_params.yaml) # cybertech
 X=$(yq eval ".${ROBOT_TYPE}.moveit_bringup_hardware.x" ../config/bringup_params.yaml)
 Y=$(yq eval ".${ROBOT_TYPE}.moveit_bringup_hardware.y" ../config/bringup_params.yaml)
 Z=$(yq eval ".${ROBOT_TYPE}.moveit_bringup_hardware.z" ../config/bringup_params.yaml)
@@ -35,6 +35,7 @@ echo "      yaw: $YAW"
 echo "----------------------------------------------------"
 
 ros2 launch weld_flow_bringup moveit_bringup_hardware.launch.py \
+    robot_model:=$ROBOT_MODEL \
     robot_family:=$ROBOT_FAMILY \
     #namespace:=$NAMESPACE \ #issues with namespace, fix later
     x:=$X \
