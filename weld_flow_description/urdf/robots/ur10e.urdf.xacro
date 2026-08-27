@@ -40,7 +40,7 @@
     </xacro:ur_robot>
 
     <!--ft_sensor-->
-    <xacro:ft_sensor/>
+    <xacro:ft_sensor parent_link="tool0"/>
     
     <!--welding gun-->
     <xacro:end_effector prefix="$(arg prefix)"/>
