@@ -8,6 +8,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 from ament_index_python.packages import get_package_share_directory
 import yaml
 from pathlib import Path
+import os
 
 
 def generate_launch_description(robot_type="kuka"):
@@ -24,6 +25,8 @@ def generate_launch_description(robot_type="kuka"):
     """
 
     #---Setting paths for importing files---#
+
+    robot_type=os.environ.get("ROBOT_TYPE")
 
     # Find urdf package
     pkg_share_description = FindPackageShare('weld_flow_description')
@@ -49,15 +52,16 @@ def generate_launch_description(robot_type="kuka"):
     with open(bringup_config_path, "r") as f:
         config_params = yaml.load(f, Loader=yaml.SafeLoader)
 
-    if (robot_type=="ur10e"):
+    if (robot_type=="ur"):
+        robot_model=config_params['ur']['robot_state_publisher']['robot_model']
 
-    #--Defining top level urdf based on argument--#
+        #--Defining top level urdf based on argument--#
         urdf_model_path = PathJoinSubstitution(
             [
                 pkg_share_description,
                 'urdf',
                 'robots',
-                ["ur10e", ".urdf.xacro"]
+                [robot_model, ".urdf.xacro"]
             ])   
 
         robot_description_content = ParameterValue(Command([

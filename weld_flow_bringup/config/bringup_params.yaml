@@ -36,7 +36,6 @@ kuka:
 ur:
   moveit_bringup_gazebo:
     robot_model: "ur10e"
-    robot_family: "ur"
     x: "0"
     y: "0"
     z: "0"
@@ -45,3 +44,5 @@ ur:
     yaw: "0"
     namespace: ""
     gz_world: "lab"
+  robot_state_publisher:
+    robot_model: "ur10e"
