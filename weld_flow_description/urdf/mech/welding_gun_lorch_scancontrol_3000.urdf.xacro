@@ -30,7 +30,7 @@
 
     <joint name="tcp_welding_gun_joint" type="fixed">
       <origin xyz="0.00132 -0.00363 0.42954" rpy="3.1416 -2.3561 -1.571"/>
-      <parent link="wrist_3_link"/>
+      <parent link="ft_sensor_link"/>
       <child link="tcp_welding_gun_link"/>
     </joint>
 

@@ -1,0 +1,15 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 500
+
+    ft_sensor_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
+ft_sensor_broadcaster:
+  ros__parameters:
+
+    sensor_name: ft_sensor
+
+    frame_id: ft_sensor_link
+
+    topic_name: ft_data

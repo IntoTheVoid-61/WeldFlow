@@ -56,6 +56,8 @@
                 </state_interface>
             </joint>
 
+            <xacro:ft_sensor_ros2_control/>
+
         </ros2_control>
     </xacro:macro>
 </robot>

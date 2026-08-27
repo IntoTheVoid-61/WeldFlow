@@ -97,8 +97,6 @@ def generate_launch_description():
     ])
 
     if (robot_type=="ur"):
-        #pkg_share_description = FindPackageShare(f"{robot_type}_moveit_config")
-
         robot_model=config_params['ur']['moveit_bringup_gazebo']['robot_model']
 
         moveit_config = (
@@ -255,7 +253,7 @@ def generate_launch_description():
     # Load controllers, different names for ur and kuka
     load_controllers = []
     if (robot_type == "ur"):
-        controllers=["arm_controller","joint_state_broadcaster"]
+        controllers=["arm_controller","joint_state_broadcaster","ft_sensor_broadcaster"]
     elif (robot_type == "kuka"):
         controllers=["joint_trajectory_controller","joint_state_broadcaster"]
 

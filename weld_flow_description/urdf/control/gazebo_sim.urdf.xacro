@@ -3,7 +3,8 @@
     <xacro:macro name="load_gazebo_sim_ros2_control_plugin" params="robot_name">
             <gazebo>
             <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-                <parameters>$(find ${robot_name}_moveit_config)/config/ros2_controllers.yaml</parameters>
+                <parameters>$(find ${robot_name}_moveit_config)/config/ros2_controllers.yaml</parameters> <!--Robot controllers-->
+                <parameters>$(find weld_flow_description)/config/sensors_controllers.yaml</parameters> <!--Sensor controllers-->
                 <ros>
                     <remapping>/controller_manager/robot_description:=/robot_description</remapping>
                 </ros>

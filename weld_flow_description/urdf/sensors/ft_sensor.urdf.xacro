@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="ft_sensor">
+
+        <link name="ft_sensor_link">
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.01"/>
+                <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
+            </inertial>
+        </link>
+
+        <joint name="ft_sensor_joint" type="fixed">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <parent link="tool0"/>
+            <child link="ft_sensor_link"/>
+        </joint>
+
+        <gazebo reference="ft_sensor_joint">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <sensor name="ft_sensor" type="force_torque">
+            <update_rate>500.0</update_rate>
+            <always_on>true</always_on>
+            <visualize>false</visualize>
+            <topic>ft_sensor</topic>
+        </sensor>
+        </gazebo>
+
+    </xacro:macro>
+</robot>

@@ -36,6 +36,9 @@
       name="gz::sim::systems::Imu">
     </plugin>
 
+    <!--Plugin for FT-->
+    <plugin filename="gz-sim-forcetorque-system" name="gz::sim::systems::ForceTorque" />
+
     <!-- To add realistic gravity, do: 0.0 0.0 -9.8, otherwise do 0.0 0.0 0.0 -->
     <gravity>0.0 0.0 -9.8</gravity>
 
